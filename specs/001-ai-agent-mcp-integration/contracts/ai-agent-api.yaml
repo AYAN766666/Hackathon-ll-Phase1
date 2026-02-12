@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: AI Agent API
+  description: API for interacting with the AI agent for todo operations
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+paths:
+  /api/ai-agent/message:
+    post:
+      summary: Send a message to the AI agent
+      description: Process a natural language command from the user and return the AI agent's response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMessageRequest'
+      responses:
+        '200':
+          description: Successful response from the AI agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIAgentResponse'
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing JWT token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - user not authorized to perform action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserMessageRequest:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Natural language command from the user
+          example: "Add a task called 'Buy groceries'"
+          maxLength: 2000
+
+    AIAgentResponse:
+      type: object
+      required:
+        - response
+        - action_performed
+      properties:
+        response:
+          type: string
+          description: The AI agent's response to the user
+          example: "Task 'Buy groceries' has been added successfully"
+        action_performed:
+          type: boolean
+          description: Whether the requested action was successfully performed
+          example: true
+        action_result:
+          type: object
+          description: Optional result of the action performed
+          properties:
+            task_id:
+              type: integer
+              description: ID of the created/updated task
+              example: 123
+            task_title:
+              type: string
+              description: Title of the task
+              example: "Buy groceries"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "INVALID_TOKEN"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Invalid or expired JWT token"
+
+security:
+  - bearerAuth: []

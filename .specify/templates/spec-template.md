@@ -84,16 +84,25 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST support adding tasks with required title and optional description
+- **FR-002**: System MUST support viewing all tasks with ID, title, and completion status
+- **FR-003**: System MUST support updating task title and/or description by task ID
+- **FR-004**: System MUST support deleting tasks by task ID
+- **FR-005**: System MUST support marking tasks as complete/incomplete by task ID
+- **FR-006**: System MUST maintain Phase II functionality unchanged
+- **FR-007**: AI Agent MUST process natural language commands for Todo operations
+- **FR-008**: AI Agent MUST reject off-topic requests and only respond to Todo commands
+- **FR-009**: MCP Server MUST bridge AI agent requests to existing FastAPI Todo APIs
+- **FR-010**: MCP Server MUST verify JWT tokens for all AI agent requests
+- **FR-011**: MCP Server MUST enforce user_id boundaries for data isolation
+- **FR-012**: AI Agent MUST use SQLite as file-based database for operations
+- **FR-013**: AI Agent MUST be integrated with Gemini AI using OpenAI-compatible API
+- **FR-014**: AI Agent UI MUST be accessible from dashboard after user login
+- **FR-015**: AI Agent MUST NOT bypass existing authentication mechanisms
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-016**: System MUST [NEEDS CLARIFICATION: additional capability not specified]
 
 ### Key Entities *(include if feature involves data)*
 

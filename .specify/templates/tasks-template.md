@@ -49,7 +49,7 @@ description: "Task list template for feature implementation"
 **Purpose**: Project initialization and basic structure
 
 - [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
+- [ ] T002 Initialize Python project with UV for dependency management
 - [ ] T003 [P] Configure linting and formatting tools
 
 ---
@@ -68,6 +68,10 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T007 Create base models/entities that all stories depend on
 - [ ] T008 Configure error handling and logging infrastructure
 - [ ] T009 Setup environment configuration management
+- [ ] T010 [P] Install and configure OpenAI Agents SDK for AI agent
+- [ ] T011 [P] Set up SQLite database for AI agent operations
+- [ ] T012 Configure MCP Server as bridge between AI agent and FastAPI backend
+- [ ] T013 Implement JWT token verification for AI agent requests
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
